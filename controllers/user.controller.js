@@ -12,9 +12,7 @@ dotenv.config({ path: './config.env' });
 const getAllUsers= catchAsync( async(req,res,next)=>{
 const users=await User.findAll({
     //ver que dato incluyen en el ejrcicio
-    include:[
-        {model:Reviews}
-    ]
+    include:Reviews,
 })
 
 res.status(200).json({
@@ -27,8 +25,8 @@ res.status(200).json({
 const createUser= catchAsync( async(req,res,next)=>{
 const {name,age,email,password}=req.body;
 
-const salt=await bcryptjs.genSalt(12)
-const hashPassword=await bcryptjs.hash(password,salt)
+const salt=await bcrypt.genSalt(12)
+const hashPassword=await bcrypt.hash(password,salt)
 
 const newUser=await User.create({
     name,age,email,password:hashPassword,

@@ -1,5 +1,5 @@
 const {Game}=require('../models/games.model')
-const {Console}=require('../models/consoles.model')
+const {GamesInConsole}=require('../models/gamesInConsoles.model')
 const {Reviews}=require('../models/reviews.model')
 const { catchAsync } = require('../utils/catchAsync.util')
 const { AppError } = require('../utils/appError.util');
@@ -16,7 +16,8 @@ res.status(201).json({
 const getAllGames =catchAsync(async(req,res,next)=>{
     const games=await Game.findAll({
         include:[
-            {model:Reviews}
+          {model:Reviews},
+          {model:GamesInConsole}
         ]
     })
     res.status(200).json({

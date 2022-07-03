@@ -3,7 +3,7 @@ const { app } = require("./app");
 //models
 const { Reviews} = require('./models/reviews.model');
 const { User } = require('./models/users.model');
-const {GameInConsole}=require('./models/gamesInConsoles.model')
+const {GamesInConsole}=require('./models/gamesInConsoles.model')
 const {Game}=require('./models/games.model')
 const {Console}=require('./models/consoles.model')
 // Utils
@@ -20,6 +20,13 @@ Reviews.belongsTo(User)
 Game.hasMany(Reviews,{foreignKey:'userId'});
 Reviews.belongsTo(Game)
 
+Game.hasMany(GamesInConsole,{foreignKey:'gameId'})
+GamesInConsole.belongsTo(Game)
+
+Console.hasMany(GamesInConsole,{foreignKey:'consoleId'})
+GamesInConsole.belongsTo(Console)
+//Game.belongsToMany(Console,{through:'gameInConsole'})
+//Console.belongsToMany(Game,{through:'gameInConsole'})
 
  db.sync()
 	.then(() => console.log('Db synced'))
