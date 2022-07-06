@@ -10,8 +10,7 @@ const { AppError } = require('../utils/appError.util');
 dotenv.config({ path: './config.env' });
 
 const getAllUsers= catchAsync( async(req,res,next)=>{
-const users=await User.findAll({
-    //ver que dato incluyen en el ejrcicio
+const users=await User.findAll({ where:{ status:'active'},
     include:Reviews,
 })
 
@@ -24,6 +23,7 @@ res.status(200).json({
 
 const createUser= catchAsync( async(req,res,next)=>{
 const {name,age,email,password}=req.body;
+
 
 const salt=await bcrypt.genSalt(12)
 const hashPassword=await bcrypt.hash(password,salt)
