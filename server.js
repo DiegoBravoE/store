@@ -25,8 +25,7 @@ GamesInConsole.belongsTo(Game)
 
 Console.hasMany(GamesInConsole,{foreignKey:'consoleId'})
 GamesInConsole.belongsTo(Console)
-//Game.belongsToMany(Console,{through:'gameInConsole'})
-//Console.belongsToMany(Game,{through:'gameInConsole'})
+
 
  db.sync()
 	.then(() => console.log('Db synced'))

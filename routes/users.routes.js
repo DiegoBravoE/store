@@ -7,7 +7,7 @@ const { protectSession,protectUserAccount} = require('../middlewares/auth.middle
 
 const usersRouter=express.Router()
 
-usersRouter.post('/signup', createUserValidators,createUser)
+usersRouter.post('/signup',createUserValidators,createUser)
 usersRouter.post('/login', login);
 
 

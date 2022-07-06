@@ -11,8 +11,10 @@ const gamesRouter=express.Router()
 
 gamesRouter.post('/',protectSession,createGame)
 gamesRouter.get('/',getAllGames)
+
+gamesRouter.post('/reviews/:gameId',protectSession,gameExists,reviewGame)
+
 gamesRouter.patch('/:id',protectSession,gameExists,upDateGame)
 gamesRouter.delete('/:id',protectSession,gameExists,deleteGame)
-gamesRouter.post('/reviews/:gameId',protectSession,gameExists,reviewGame)
 
 module.exports={gamesRouter}
